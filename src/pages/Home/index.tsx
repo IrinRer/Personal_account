@@ -1,7 +1,8 @@
-import React from 'react';
+import React  from 'react';
 
 const Home = () => {
-    return <p>hove</p>
+
+  return <p>hove</p>;
 };
 
 export default Home;
