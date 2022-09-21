@@ -6,7 +6,7 @@ export interface IContactItem {
   user: string;
   phone: string;
   email: string;
-  id: number
+  id: number;
 }
 
 export interface IContactsSlice {
@@ -14,6 +14,9 @@ export interface IContactsSlice {
   inputName: string;
   inputEmail: string;
   inputPhone: string;
+  addName: string;
+  addEmail: string;
+  addPhone: string;
   loading: boolean;
   error: AxiosError | null;
 }

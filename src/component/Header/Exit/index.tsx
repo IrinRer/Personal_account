@@ -2,10 +2,14 @@ import React from 'react';
 import { ReactComponent as ExitSVG } from 'asserts/icon/exit.svg';
 import styles from './index.module.scss';
 
-const Exit = () => {
+interface IProps {
+  handleClick: () => void;
+}
+
+const Exit: React.FC<IProps> = ({ handleClick }) => {
   return (
     <div className={styles.wrapper}>
-      <ExitSVG />
+      <ExitSVG onClick={handleClick} />
     </div>
   );
 };

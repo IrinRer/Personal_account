@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
+import { random } from 'lodash';
 import { api } from 'network';
 import { CONTACTS_SLICE_ALIAS } from './types';
 
@@ -49,6 +50,26 @@ export const changePhoneName = createAsyncThunk(
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         phone,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const addUser = createAsyncThunk(
+  `${CONTACTS_SLICE_ALIAS}/addUser`,
+  async (
+    { name, phone, email }: { name: string; email: string; phone: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response: AxiosResponse = await api().post('/contacts', {
+        name,
+        phone,
+        email,
+        id: random(),
       });
       return response.data;
     } catch (error) {

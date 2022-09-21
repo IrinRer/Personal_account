@@ -1,0 +1,12 @@
+.btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &::after {
+    content: '+';
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,63 @@
+@import 'styles/mixins.scss';
+
+.wrapper {
+  width: 40%;
+  background: darkcyan;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 20px 0px 20px 0px;
+
+  @include media-breakpoint-only(xs) {
+    width: 90%;
+  }
+
+  .wrapper_input_text {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media-breakpoint-only(xs) {
+        flex-direction: column;
+      }
+
+    p {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 27px;
+      color: white;
+      text-align: center;
+    }
+   
+    input {
+        background: #ffffff;
+        border-radius: 10px;
+        outline: none;
+        padding: 10px;
+        border: none;
+        font-weight: 400;
+        font-size: 20px;
+    }
+
+  }
+}
+
+.btn {
+  width: 182px;
+  height: 40px;
+  display: block;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 200%;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-transform: uppercase;
+  margin: 50px auto;
+  margin-bottom: 0;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0.5px 0.5px 5px black;
+  }
+}

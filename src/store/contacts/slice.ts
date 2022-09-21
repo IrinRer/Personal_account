@@ -8,6 +8,11 @@ const initialState: IContactsSlice = {
   inputName: '',
   inputEmail: '',
   inputPhone: '',
+
+  addName: '',
+  addEmail: '',
+  addPhone: '',
+
   loading: false,
   error: null,
 };
@@ -24,6 +29,16 @@ export const contactsSlice = createSlice({
     },
     setInputPhone: (state, action: PayloadAction<string>) => {
       state.inputPhone = action.payload;
+    },
+
+    setAddName: (state, action: PayloadAction<string>) => {
+      state.addName = action.payload;
+    },
+    setAddEmail: (state, action: PayloadAction<string>) => {
+      state.addEmail = action.payload;
+    },
+    setAddPhone: (state, action: PayloadAction<string>) => {
+      state.addPhone = action.payload;
     },
   },
   extraReducers: {
@@ -50,6 +65,12 @@ export const contactsSlice = createSlice({
   },
 });
 
-export const { setInputName, setInputEmail, setInputPhone } =
-  contactsSlice.actions;
+export const {
+  setInputName,
+  setInputEmail,
+  setInputPhone,
+  setAddName,
+  setAddEmail,
+  setAddPhone,
+} = contactsSlice.actions;
 export default contactsSlice.reducer;

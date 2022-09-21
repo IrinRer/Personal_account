@@ -8,7 +8,7 @@ import { IContactsSlice } from './contacts/types';
 export const store = configureStore({
   reducer: {
     auth: AuthorizationReducer,
-    contacts: ContactsReducer
+    contacts: ContactsReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
