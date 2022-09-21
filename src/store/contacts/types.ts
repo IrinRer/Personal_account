@@ -6,6 +6,7 @@ export interface IContactItem {
   user: string;
   phone: string;
   email: string;
+  id: number
 }
 
 export interface IContactsSlice {
