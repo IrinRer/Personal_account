@@ -1,7 +1,8 @@
+import AuthContainer from 'container/AuthContainer';
 import React from 'react';
 
 const Auth = () => {
-    return <p>auth</p>
+    return <AuthContainer/>
 };
 
 export default Auth;
