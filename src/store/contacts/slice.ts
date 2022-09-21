@@ -15,7 +15,17 @@ const initialState: IContactsSlice = {
 export const contactsSlice = createSlice({
   name: CONTACTS_SLICE_ALIAS,
   initialState,
-  reducers: {},
+  reducers: {
+    setInputName: (state, action: PayloadAction<string>) => {
+      state.inputName = action.payload;
+    },
+    setInputEmail: (state, action: PayloadAction<string>) => {
+      state.inputEmail = action.payload;
+    },
+    setInputPhone: (state, action: PayloadAction<string>) => {
+      state.inputPhone = action.payload;
+    },
+  },
   extraReducers: {
     [fechUserAction.pending.type]: (state) => {
       state.loading = true;
@@ -40,10 +50,6 @@ export const contactsSlice = createSlice({
   },
 });
 
-// export const {
-//   authorization,
-//   resetAuthorization,
-//   changeInputLogin,
-//   changeInputPassword,
-// } = authorizationSlice.actions;
+export const { setInputName, setInputEmail, setInputPhone } =
+  contactsSlice.actions;
 export default contactsSlice.reducer;
