@@ -1,3 +1,30 @@
 {
-  "authorization": { "login": "test@mail.ru", "password": "qwerty" }
+  "authorization": { "login": "test@mail.ru", "password": "qwerty" },
+  "contacts": [
+    {
+      "user": "Elizabeth Davis",
+      "phone": "39495495",
+      "email": "elizabethDavis@mail.ru"
+    },
+    {
+      "user": "Cynthia Miller",
+      "phone": "5439495495",
+      "email": "сynthiaMiller@mail.ru"
+    },
+    {
+      "user": "Sheila Tate",
+      "phone": "6995966965",
+      "email": "sheilaTate@mail.ru"
+    },
+    {
+      "user": "Robert Green",
+      "phone": "959595959",
+      "email": "robertGreen@mail.ru"
+    },
+    {
+      "user": "Barry Thomas",
+      "phone": "5959959599",
+      "email": "barryThomas@mail.ru"
+    }
+  ]
 }
