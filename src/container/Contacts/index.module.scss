@@ -1,0 +1,20 @@
+.wrapper {
+    padding: 0px 30px;
+    .wrapper_contact_item {
+        border: 2px solid black;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 30px;
+        margin-top: 30px;
+        color: white;
+
+        &:nth-child(even) {
+            background-color: rgb(139, 194, 196);
+        }
+
+        &:nth-child(odd) {
+            background-color: rgb(144, 180, 247);
+        }
+    }
+}

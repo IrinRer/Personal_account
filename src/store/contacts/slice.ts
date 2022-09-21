@@ -5,6 +5,9 @@ import { fechUserAction } from './thunk';
 
 const initialState: IContactsSlice = {
   contacts: [],
+  inputName: '',
+  inputEmail: '',
+  inputPhone: '',
   loading: false,
   error: null,
 };
