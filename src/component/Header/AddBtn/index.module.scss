@@ -1,12 +1,21 @@
+@import 'styles/color.scss';
+
 .btn {
   width: 40px;
   height: 40px;
   background: transparent;
   border-radius: 5px;
   cursor: pointer;
+  border: 2px solid $blue-water;
 
   &::after {
     content: '+';
     font-size: 20px;
   }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0.5px 0.5px 5px rgb(149, 142, 142);
+  }
+
 }

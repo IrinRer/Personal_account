@@ -9,3 +9,5 @@ export const getPhone = (state: RootState) => state.contacts.inputPhone;
 export const getNameAdd = (state: RootState) => state.contacts.addName;
 export const getEmailAdd = (state: RootState) => state.contacts.addEmail;
 export const getPhoneAdd = (state: RootState) => state.contacts.addPhone;
+
+export const getLoad = (state: RootState) => state.contacts.loading;

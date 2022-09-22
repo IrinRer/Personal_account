@@ -1,3 +1,4 @@
+import { addUser } from 'store/contacts/thunk';
 import { AxiosError } from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CONTACTS_SLICE_ALIAS, IContactItem, IContactsSlice } from './types';
@@ -40,6 +41,11 @@ export const contactsSlice = createSlice({
     setAddPhone: (state, action: PayloadAction<string>) => {
       state.addPhone = action.payload;
     },
+    resetAdd: (state) => {
+      state.addPhone = '';
+      state.addEmail = '';
+      state.addName = '';
+    },
   },
   extraReducers: {
     [fechUserAction.pending.type]: (state) => {
@@ -62,6 +68,27 @@ export const contactsSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+
+
+    [addUser.pending.type]: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+
+    [addUser.fulfilled.type]: (
+      state,
+      { payload }: PayloadAction<IContactItem>,
+    ) => {
+      state.contacts.push(payload);
+    },
+
+    [addUser.rejected.type]: (
+      state,
+      { payload }: PayloadAction<AxiosError>,
+    ) => {
+      state.loading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -72,5 +99,6 @@ export const {
   setAddName,
   setAddEmail,
   setAddPhone,
+  resetAdd
 } = contactsSlice.actions;
 export default contactsSlice.reducer;

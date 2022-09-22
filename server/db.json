@@ -18,7 +18,7 @@
       "id": 2
     },
     {
-      "user": "Sheila Tate",
+      "user": "SheiTate",
       "phone": "5848584858",
       "email": "sheilaTate@mail.ru",
       "id": 3
@@ -34,12 +34,6 @@
       "phone": "5959959599",
       "email": "barryThomas@mail.ru",
       "id": 5
-    },
-    {
-      "name": "hghgh",
-      "phone": "ghghg",
-      "email": "ghghgh",
-      "id": 6
     }
   ]
 }

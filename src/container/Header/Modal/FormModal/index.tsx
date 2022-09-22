@@ -1,16 +1,21 @@
 import { useAppDispatch } from 'hooks/redux/useAppDispatch';
 import { useAppSelector } from 'hooks/redux/useAppSelector';
 import React from 'react';
-import { getEmailAdd, getNameAdd, getPhoneAdd } from 'store/contacts/selectors';
-import { setAddEmail, setAddName, setAddPhone } from 'store/contacts/slice';
+import { getEmailAdd, getLoad, getNameAdd, getPhoneAdd } from 'store/contacts/selectors';
+import { resetAdd, setAddEmail, setAddName, setAddPhone } from 'store/contacts/slice';
 import { addUser } from 'store/contacts/thunk';
 import styles from './index.module.scss';
 
-const FormModal = () => {
+interface IProps {
+    handleClickModal: (arg: boolean) => void;
+};
+
+const FormModal: React.FC<IProps> = ({handleClickModal}) => {
   const dispatch = useAppDispatch();
   const name = useAppSelector(getNameAdd);
   const phone = useAppSelector(getPhoneAdd);
   const email = useAppSelector(getEmailAdd);
+  const load = useAppSelector(getLoad);
 
   const handleChangeName = (e) => {
     dispatch(setAddName(e.target.value));
@@ -25,8 +30,12 @@ const FormModal = () => {
   };
 
   const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(addUser({name, phone, email}))
+    if(name && phone && email) {
+      e.preventDefault();
+      handleClickModal(false);
+      dispatch(addUser({name, phone, email}))
+      dispatch(resetAdd())
+    }
   }
 
   return (

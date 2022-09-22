@@ -19,7 +19,7 @@ const Modal: React.FC<IProps> = ({ isOpen, setOpen }) => {
 
   return createPortal(
     <div className={styles.modal} onClick={handleClick}>
-      <FormModal />
+      <FormModal handleClickModal={setOpen}/>
     </div>,
     document.body,
   );

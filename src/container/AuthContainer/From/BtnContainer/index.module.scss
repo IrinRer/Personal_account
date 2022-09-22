@@ -10,10 +10,11 @@
     width: 213px;
     margin: auto;
     cursor: pointer;
-    background-color: $btn-color;
+    background-color: $blue-water;
+    color: white;
 
     &:hover {
         transform: scale(1.05);
-        box-shadow: 0px 2px 0px $btn-color;
+        box-shadow: 0px 2px 0px $blue-water;
       }
 }

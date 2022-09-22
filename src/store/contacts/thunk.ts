@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
-import { random } from 'lodash';
 import { api } from 'network';
 import { CONTACTS_SLICE_ALIAS } from './types';
 
@@ -18,10 +17,10 @@ export const fechUserAction = createAsyncThunk(
 
 export const changeUserName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/name`,
-  async ({ id, name }: { id: number; name: string }, { rejectWithValue }) => {
+  async ({ id, name }: { id: number | string; name: string }, { rejectWithValue }) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
-        name,
+        user: name,
       });
       return response.data;
     } catch (error) {
@@ -32,7 +31,7 @@ export const changeUserName = createAsyncThunk(
 
 export const changeEmailName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/email`,
-  async ({ id, email }: { id: number; email: string }, { rejectWithValue }) => {
+  async ({ id, email }: { id: number | string; email: string }, { rejectWithValue }) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         email,
@@ -46,7 +45,7 @@ export const changeEmailName = createAsyncThunk(
 
 export const changePhoneName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/phone`,
-  async ({ id, phone }: { id: number; phone: string }, { rejectWithValue }) => {
+  async ({ id, phone }: { id: number | string; phone: string }, { rejectWithValue }) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         phone,
@@ -65,13 +64,16 @@ export const addUser = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const response: AxiosResponse = await api().post('/contacts', {
-        name,
+      const obj = {
+        user: name,
         phone,
         email,
-        id: random(),
-      });
-      return response.data;
+        id: `${name}${phone}`,
+      };
+
+      await api().post('/contacts', obj);
+
+      return obj;
     } catch (error) {
       return rejectWithValue(error.message);
     }
