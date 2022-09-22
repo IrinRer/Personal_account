@@ -17,11 +17,13 @@ const Form = () => {
     [styles.error_form]: auth === 'no',
   });
 
-  const handleChangeEmail = (e) => {
-    dispatch(changeInputLogin(e.target.value));
+  const handleChangeEmail = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
+    dispatch(changeInputLogin(target.value));
   };
-  const handleChangePassword = (e) => {
-    dispatch(changeInputPassword(e.target.value));
+  const handleChangePassword = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
+    dispatch(changeInputPassword(target.value));
   };
 
   return (

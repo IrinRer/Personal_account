@@ -10,26 +10,28 @@ import {
 } from 'store/contacts/thunk';
 
 const Contacts = () => {
- const contacts = useAppSelector(getContacts);
+  const contacts = useAppSelector(getContacts);
 
   const dispatch = useAppDispatch();
-  //   const name = useAppSelector(getName);
-  //   const phone = useAppSelector(getPhone);
-  //   const email = useAppSelector(getEmailTextarea);
 
-  const handleBlurName = (e) => {
-    dispatch(changeUserName({ id: e.target.dataset.id, name: e.target.value }));
-  };
-
-  const handleBlurPhone = (e) => {
+  const handleBlurName = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
     dispatch(
-      changePhoneName({ id: e.target.dataset.id, phone: e.target.value }),
+      changeUserName({ id: target.dataset.id || '', name: target.value }),
     );
   };
 
-  const handleBlurEmail = (e) => {
+  const handleBlurPhone = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
     dispatch(
-      changeEmailName({ id: e.target.dataset.id, email: e.target.value }),
+      changePhoneName({ id: target.dataset.id || '', phone: target.value }),
+    );
+  };
+
+  const handleBlurEmail = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
+    dispatch(
+      changeEmailName({ id: target.dataset.id || '', email: target.value }),
     );
   };
 

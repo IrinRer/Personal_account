@@ -11,15 +11,16 @@ interface IProps {
 const Modal: React.FC<IProps> = ({ isOpen, setOpen }) => {
   if (!isOpen) return null;
 
-  const handleClick = (e) => {
-    if (e.target.className === styles.modal) {
+  const handleClick = (e: React.FormEvent<EventTarget>) => {
+    const target = e.target as HTMLInputElement;
+    if (target.className === styles.modal) {
       setOpen(false);
     }
   };
 
   return createPortal(
     <div className={styles.modal} onClick={handleClick}>
-      <FormModal handleClickModal={setOpen}/>
+      <FormModal handleClickModal={setOpen} />
     </div>,
     document.body,
   );

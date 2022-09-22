@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className={styles.wrapper}>
       <AddBtn />
-      <Search/>
+      <Search />
       <ExitContainer />
     </div>
   );

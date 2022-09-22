@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-export const AUTHORIZATION_SLICE_ALIAS = "authorization";
+export const AUTHORIZATION_SLICE_ALIAS = 'authorization';
 
 export interface IAuthSlice {
   auth: string;
@@ -9,5 +9,5 @@ export interface IAuthSlice {
   inputLogin?: string;
   inputPassword?: string;
   loading: boolean;
-  error: AxiosError | null
+  error: AxiosError | null;
 }

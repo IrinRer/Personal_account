@@ -1,4 +1,5 @@
 @import 'styles/mixins.scss';
+@import 'styles/color.scss';
 
 .wrapper {
   padding: 0px 30px;
@@ -24,11 +25,11 @@
     }
 
     &:nth-child(even) {
-      background-color: rgb(139, 194, 196);
+      background-color: $even-color;
     }
 
     &:nth-child(odd) {
-      background-color: rgb(144, 180, 247);
+      background-color: $odd-color;
     }
   }
 

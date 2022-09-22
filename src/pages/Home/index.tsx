@@ -1,6 +1,5 @@
 import Contacts from 'container/Contacts';
 import { useAppDispatch } from 'hooks/redux/useAppDispatch';
-import { useAppSelector } from 'hooks/redux/useAppSelector';
 import React, { useEffect } from 'react';
 import { fechUserAction } from 'store/contacts/thunk';
 
@@ -11,7 +10,7 @@ const Home = () => {
     dispatch(fechUserAction());
   }, [dispatch]);
 
-  return <Contacts/>;
+  return <Contacts />;
 };
 
 export default Home;

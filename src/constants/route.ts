@@ -1,4 +1,4 @@
-type TRouteNames = "auth" | "home" | "notFound";
+type TRouteNames = 'auth' | 'home' | 'notFound';
 
 interface IRoute {
   path: string;
@@ -8,18 +8,18 @@ interface IRoute {
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   home: {
-    path: "/",
-    route: "/",
-    name: "Home",
+    path: '/',
+    route: '/',
+    name: 'Home',
   },
   auth: {
-    path: "/auth",
-    route: "/auth",
-    name: "Authorization",
+    path: '/auth',
+    route: '/auth',
+    name: 'Authorization',
   },
   notFound: {
-    path: "*",
-    route: "*",
-    name: "404",
+    path: '*',
+    route: '*',
+    name: '404',
   },
 };

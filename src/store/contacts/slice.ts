@@ -120,6 +120,6 @@ export const {
   setAddEmail,
   setAddPhone,
   resetAdd,
-  setSearch
+  setSearch,
 } = contactsSlice.actions;
 export default contactsSlice.reducer;

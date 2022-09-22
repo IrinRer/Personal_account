@@ -1,17 +1,17 @@
-@import 'styles/color.scss'; 
+@import 'styles/color.scss';
 
 editor-squiggler {
-    display: none;
+  display: none;
 }
 
 .input {
-    border-radius: 10px;
-    border: 2px solid $blue-water;
-    padding: 5px;
-    width: 300px;
-    font-size: 20px;
+  border-radius: 10px;
+  border: 2px solid $blue-water;
+  padding: 5px;
+  width: 300px;
+  font-size: 20px;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }

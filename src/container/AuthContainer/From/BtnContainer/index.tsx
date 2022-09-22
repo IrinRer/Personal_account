@@ -6,14 +6,14 @@ import styles from './index.module.scss';
 const ButtonContainer = () => {
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     dispatch(authorization());
   };
   return (
-      <button type="submit" onClick={handleSubmit} className={styles.btn}>
-        Login in
-      </button>
+    <button type="submit" onClick={handleSubmit} className={styles.btn}>
+      Login in
+    </button>
   );
 };
 
