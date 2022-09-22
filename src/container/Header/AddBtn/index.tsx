@@ -8,13 +8,13 @@ const AddBtn = () => {
   const handleClick = () => {
     setOpen(true);
   };
-  
+
   return (
     <>
-    <AddBtnComponent handleClick={handleClick} />;
-     <Modal isOpen={isOpen} setOpen={setOpen}/>
+      <AddBtnComponent handleClick={handleClick} />
+      <Modal isOpen={isOpen} setOpen={setOpen} />
     </>
-  )
+  );
 };
 
 export default AddBtn;

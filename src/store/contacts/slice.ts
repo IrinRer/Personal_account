@@ -14,6 +14,9 @@ const initialState: IContactsSlice = {
   addEmail: '',
   addPhone: '',
 
+  searchInput: '',
+  filterContacts: [],
+
   loading: false,
   error: null,
 };
@@ -45,6 +48,17 @@ export const contactsSlice = createSlice({
       state.addPhone = '';
       state.addEmail = '';
       state.addName = '';
+    },
+
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.searchInput = action.payload;
+      state.filterContacts = state.contacts.filter((item) => {
+        return (
+          item.user.toLowerCase().indexOf(action.payload.toLowerCase()) > -1 ||
+          item.phone.toLowerCase().indexOf(action.payload.toLowerCase()) > -1 ||
+          item.email.toLowerCase().indexOf(action.payload.toLowerCase()) > -1
+        );
+      });
     },
   },
   extraReducers: {
@@ -106,5 +120,6 @@ export const {
   setAddEmail,
   setAddPhone,
   resetAdd,
+  setSearch
 } = contactsSlice.actions;
 export default contactsSlice.reducer;

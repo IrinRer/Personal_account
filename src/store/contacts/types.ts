@@ -17,6 +17,8 @@ export interface IContactsSlice {
   addName: string;
   addEmail: string;
   addPhone: string;
+  searchInput: string;
+  filterContacts: Array<IContactItem>;
   loading: boolean;
   error: AxiosError | null;
 }

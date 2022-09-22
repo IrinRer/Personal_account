@@ -8,10 +8,10 @@ import {
   changePhoneName,
   changeUserName,
 } from 'store/contacts/thunk';
-import DeleteContainer from './Delete';
 
 const Contacts = () => {
-  const contacts = useAppSelector(getContacts);
+ const contacts = useAppSelector(getContacts);
+
   const dispatch = useAppDispatch();
   //   const name = useAppSelector(getName);
   //   const phone = useAppSelector(getPhone);
