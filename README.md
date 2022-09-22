@@ -5,8 +5,8 @@
 
 Тестовое задание для компании Takeoff Staff (https://takeoff-staff.ru/full-stack-team/).
 
-Логин: test@mail.ru
-Пароль: qwerty
+1. Логин: test@mail.ru
+2. Пароль: qwerty
 
 ## Технологии
 1. React
