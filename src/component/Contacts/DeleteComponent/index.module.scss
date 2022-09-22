@@ -1,4 +1,14 @@
+@import 'styles/mixins.scss';
+
 .wrapper {
+  @include media-breakpoint-only(xs) {
+    display: flex;
+    justify-content: center;
+  }
+  @include media-breakpoint-only(sm) {
+    display: flex;
+    justify-content: center;
+  }
   svg {
     width: 30px;
     height: 30px;

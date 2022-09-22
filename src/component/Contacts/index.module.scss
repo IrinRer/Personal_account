@@ -24,6 +24,10 @@
       gap: 10px;
     }
 
+    @include media-breakpoint-only(md) {
+      gap: 10px;
+    }
+
     &:nth-child(even) {
       background-color: $even-color;
     }
