@@ -47,7 +47,7 @@ export const authorizationSlice = createSlice({
 
     [authorizationAction.fulfilled.type]: (
       state,
-      { payload }: PayloadAction<any>,
+      { payload }: PayloadAction<{ login: string; password: string }>,
     ) => {
       state.login = payload.login;
       state.password = payload.password;
