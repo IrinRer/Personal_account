@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Error from 'component/common/Error';
 import AuthPage from 'pages/Auth';
 import { useAuth } from 'hooks/useAuth';
-import Header from 'container/Header';
+import Header from 'component/Header';
 import Home from 'pages/Home';
 import ErrorBoundary from 'component/common/ErrorBoundary';
 import { ROUTES } from 'constants/route';

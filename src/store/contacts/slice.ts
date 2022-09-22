@@ -1,4 +1,4 @@
-import { addUser } from 'store/contacts/thunk';
+import { addUser, deleteUser } from 'store/contacts/thunk';
 import { AxiosError } from 'axios';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CONTACTS_SLICE_ALIAS, IContactItem, IContactsSlice } from './types';
@@ -69,7 +69,6 @@ export const contactsSlice = createSlice({
       state.error = payload;
     },
 
-
     [addUser.pending.type]: (state) => {
       state.loading = true;
       state.error = null;
@@ -89,6 +88,13 @@ export const contactsSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
+
+    [deleteUser.fulfilled.type]: (
+      state,
+      { payload }: PayloadAction<number | string>,
+    ) => {
+      state.contacts = state.contacts.filter((item) => item.id !== payload);
+    },
   },
 });
 
@@ -99,6 +105,6 @@ export const {
   setAddName,
   setAddEmail,
   setAddPhone,
-  resetAdd
+  resetAdd,
 } = contactsSlice.actions;
 export default contactsSlice.reducer;

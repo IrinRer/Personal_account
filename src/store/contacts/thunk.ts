@@ -17,7 +17,10 @@ export const fechUserAction = createAsyncThunk(
 
 export const changeUserName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/name`,
-  async ({ id, name }: { id: number | string; name: string }, { rejectWithValue }) => {
+  async (
+    { id, name }: { id: number | string; name: string },
+    { rejectWithValue },
+  ) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         user: name,
@@ -31,7 +34,10 @@ export const changeUserName = createAsyncThunk(
 
 export const changeEmailName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/email`,
-  async ({ id, email }: { id: number | string; email: string }, { rejectWithValue }) => {
+  async (
+    { id, email }: { id: number | string; email: string },
+    { rejectWithValue },
+  ) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         email,
@@ -45,7 +51,10 @@ export const changeEmailName = createAsyncThunk(
 
 export const changePhoneName = createAsyncThunk(
   `${CONTACTS_SLICE_ALIAS}/phone`,
-  async ({ id, phone }: { id: number | string; phone: string }, { rejectWithValue }) => {
+  async (
+    { id, phone }: { id: number | string; phone: string },
+    { rejectWithValue },
+  ) => {
     try {
       const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
         phone,
@@ -74,6 +83,18 @@ export const addUser = createAsyncThunk(
       await api().post('/contacts', obj);
 
       return obj;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteUser = createAsyncThunk(
+  `${CONTACTS_SLICE_ALIAS}/delete`,
+  async (id: number | string, { rejectWithValue }) => {
+    try {
+      await api().delete(`/contacts/${id}`);
+      return id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
