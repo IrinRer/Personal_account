@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+## Описание
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Приложение личный кабинет. Страница со списком контактов пользователя доступна только после авторизации.
+На странице со списком контактов есть возможность добавлять/удалять/редактировать контакты, а также есть наличие функция поиска.
 
-## Available Scripts
+Тестовое задание для компании Takeoff Staff (https://takeoff-staff.ru/full-stack-team/).
 
-In the project directory, you can run:
+Логин: test@mail.ru
+Пароль: qwerty
 
-### `npm start`
+## Технологии
+1. React
+2. TypeScript
+3. Redux (thunk, redux-toolkit)
+4. JSON-server
+5. CSS modules
+6. React-router-dom 6
+7. Axious
+8. Classnames
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Что было сделано
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. JSON-server использовался для создания сервера, к которому будут делаться запросы. Запросы делала с помощью middleware - thunk. Store создавала с помощью Redux-toolkit. 
 
-### `npm test`
+2. Базу данных сформирована в соответствие с потребностями.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Есть поле *authorization* в котором записаны логин и пароль. 
 
-### `npm run build`
+Есть поле *contacts*, который содержит массив объектов.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+``` 
+   {
+      "user": "Cyntia Miller",
+      "phone": "5439495495",
+      "email": "cyntiaMiller@google.com",
+      "id": 2
+    }
+```
+3. Сделан адаптив под разные устройства.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Адаптив сделан с помощью mixin, который принимает переменные и в зависимости от значения возвращает нужный @media.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Вспомогательная функция api, которая позволят создовать объект axios с нужными заголовками.
 
-### `npm run eject`
+```
+export const api = (): AxiosInstance => {
+  return axios.create({
+    baseURL: getBackendURL(),
+  });
+};
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+В thunk нужно просто вызывать эту функцию. Это позволяет избежать дублирования кода.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Все приложение в Error Boundary, который рендерит специальный компонент, если возникают ошибки. Это позволяет избежать возможный крах приложения.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Используется общий компонент для 404 ERROR и для ошибок, которые ловятся в Error Boundary. Этот универсальный компонент принимает разные props и в зависимости от этого отображается нужный текст. Это позволяет избежать дублирования кода.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+6. Приватные роуты.
 
-## Learn More
+Есть страница на которой отображаются данные, но эти данные может посмотреть только авторизованный пользователь, если он не авторизован, то его перебрасывает на страницу с авторизацией.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+``<Route path={ROUTES.home.path} element={ <PrivateRoute> <Home /> </PrivateRoute> }/>``
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+В данном примере я оборачиваю компонент Home (является страницей) в компонент PrivateRoute, который внутри себя проверяет авторизацию и если ее нет, то на страницу Home вход не происходит.
 
-### Code Splitting
+7. TypeScript позволяет использовать Record, что очень удобно при создании роутов, так как мы заранее определяем в объекте какие страницы будут, это позволяет избежать ошибок.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+8. Возможность редактирования **Name**, **Phone**, **Email**.
 
-### Analyzing the Bundle Size
+Для этого делается **PATCH** запрос.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+const response: AxiosResponse = await api().patch(`/contacts/${id}`, {
+        user: name,
+      });
+```
 
-### Making a Progressive Web App
+9. Возможность добавления новых контактов. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Для этого при нажатии на кнопку всплывает модальное окно с формой, нажимается кнопка *OK* и делается **POST** запрос и новый контакт добавляется. 
 
-### Advanced Configuration
+Модальное окно создается через createPortal, это сделано для того, чтобы модальное окно было поверх родителя.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+``` 
+return createPortal(
+    <div className={styles.modal} onClick={handleClick}>
+      <FormModal handleClickModal={setOpen} />
+    </div>,
+    document.body,
+  );
+```
+Первый аргумент - это непосредственно модальное окно.
 
-### Deployment
+Второй аргумент - это то, место куда должно быть вставлено модальное окно. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+10. Возможность удаления контактов. 
 
-### `npm run build` fails to minify
+Для этого делается **DELETE** запрос. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+11. Возможность поиска. 
+
+Поиск происходит по имени (name), телефону (phone), email. Это сделано для того чтобы, пользователь смог найти контакт не только по имени, но и по телефону или email. При этом регистр символов не учитывается. 
+
+12. Если вводится не верный логин или пароль, то с помощью *classnames* меняется стиль input.
+
+```
+ const className = classnames(styles.wrapper_form, {
+    [styles.error_form]: auth === 'no',
+  });
+
+```
+
+## Как запустить
+
+1. Клонируете репозиторий
+
+`` git clone https://github.com/IrinRer/Personal_account.git ``
+
+2. Устанавливаете зависимости
+
+`` npm i ``
+
+3. Запускаете проект
+
+ `` npm run dev``
+ 
+ Данная команда запустит также JSON-server.
+ 
+ Версия node: **v14.17.3**
+ 
