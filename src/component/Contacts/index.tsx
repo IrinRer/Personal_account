@@ -1,7 +1,5 @@
 import DeleteContainer from 'container/Contacts/Delete';
-import { useAppSelector } from 'hooks/redux/useAppSelector';
 import React from 'react';
-import { getEmailTextarea, getName, getPhone } from 'store/contacts/selectors';
 import { IContactItem } from 'store/contacts/types';
 import styles from './index.module.scss';
 
